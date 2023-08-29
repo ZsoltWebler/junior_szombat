@@ -1,0 +1,10 @@
+Vegyes Gyakolo feladatok 
+
+E-mail címek - Algoritmizálás
+
+A feladatod, hogy az alkalmazottaknak céges e-mail címet generálj. A céges e-mail cím a következő képpen néz ki. A keresztnév első 3 karaktere nagy betűvel majd egy alulvonás és a vezetéknév első kettő karaktere végül a @webler.hu suffix, vagyis Erick Santiago e-mail címe ERI_sa@webler.hu.
+
+Az e-mail címeknek egyedinek kell lenniük, így ha egy e-mail cím már létezik, akkor adj hozzá egy új számot. Például Erica Santiago e-mail címe, ERI_sa_2@webler.hu.
+
+Olvasd be, nevek.txt fájlt, amiben kereszt és vezetéknév párokat találsz, majd minden alkalmazottnak generálj egy email címet és ezt írd ki, az email.txt fájlba. Figyelj oda, hogy ne lehessen kettő egyforma e-mail cím.
+

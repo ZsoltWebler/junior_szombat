@@ -15,7 +15,8 @@ public class Pizza {
     this.idopont = idopont;
   }
 
-  public void Mutat() {
-    System.out.println(datum + " - " + futar + " - " + cim + " - " + idopont);
+  @Override
+  public String toString() {
+    return datum + " - " + futar + " - " + cim + " - " + idopont;
   }
 }

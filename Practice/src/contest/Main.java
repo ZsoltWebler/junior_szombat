@@ -21,7 +21,7 @@ public class Main {
             System.out.println("\nRandom kérdések (200): ");
             getRandomQuestions(200).forEach(System.out::println);
             System.out.println("\nTéma alapján csoportosított kérdések:");
-            groupQuestionsByTopics().forEach(System.out::println);
+            groupQuestionsByTopics().entrySet().stream().forEach(System.out::println);
 
             System.out.println("\nA legtöbb pontot a " + mostWorthyTopic() + " téma kérdései érik.");
 
@@ -65,12 +65,9 @@ public class Main {
                 .map(Question::getQuestion)
                 .collect(Collectors.toList());
     }
-    private static List<Map.Entry<String, List<Question>>> groupQuestionsByTopics(){
+    private static Map<String, List<Question>> groupQuestionsByTopics(){
         return questions.stream()
-                .collect(Collectors.groupingBy(Question::getTopic))
-                .entrySet()
-                .stream()
-                .toList();
+                .collect(Collectors.groupingBy(Question::getTopic));
     }
 
     private static String mostWorthyTopic(){

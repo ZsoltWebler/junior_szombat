@@ -1,0 +1,15 @@
+Vegyes Gyakolo feladatok 
+
+Fotókollekció - OOP
+
+Írj egy Photo osztályt, melynek van egy neve és egy minősítése! Létre lehet hozni csak névvel, vagy névvel és minősítéssel. A minősítés egy Quality enum, hogy a felhasználó hány csillagot adott rá, lehet ez Quality.NO_STAR, Quality.ONE_STAR és Quality.TWO_STAR. A Photo osztály implementálja a Qualified interfészt, melynek definiált a Quality getQuality() és a void setQuality(Quality) metódusa.
+
+Készíts egy PhotoCollection osztályt, mely a fotók egy listáját tartalmazza!
+
+Írj egy addPhoto() metódust, amivel fotókat lehet hozzáadni a kollekcióhoz.
+
+Írj egy listPhotos() metódust, ami a konzolra írja az összes fotó nevét és annyi csillagot, amilyen a minősítése.
+
+Írj egy starPhoto() metódust, mely kikeresi a megfelelő nevű fotót, és beállítja rajta a paraméterként átadott minősítést! Ha nem talál a megadott névvel fotót, PhotoNotFoundException kivételt dob. Ez egy saját kivétel, terjessze ki a RuntimeException osztályt!
+
+Írj egy numberOfStars() metódust, mely visszaadja, hogy a képeken összesen mennyi csillag van! Ha nincs minősítése, akkor 0 csillag. Ha a minősítése Quality.ONE_STAR, akkor egy csillaggal kell számolni. Ha a minősítése Quality.TWO_STAR, akkor két csillaggal kell számolni.

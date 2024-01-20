@@ -1,7 +1,7 @@
 package java_collections;
 
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class QuizManager {
 
@@ -12,19 +12,51 @@ public class QuizManager {
     }
 
     public List<String> getQuestionsByGenre(String genre) {
-        throw new UnsupportedOperationException();
+
+        return questionList.stream().filter(question -> question.getGenre().equals(genre)).map(Question::getQuestion).toList();
+
     }
 
     public Map<String, List<Question>> getQuestionGroupedByGenre() {
-        throw new UnsupportedOperationException();
+        return questionList.stream().collect(Collectors.groupingBy(Question::getGenre));
     }
 
     public List<String> randomQuestions(int amount) {
-        throw new UnsupportedOperationException();
+
+        Set<String> questions = new HashSet<>();
+        Random rnd = new Random();
+
+        while (questions.size() < amount) {
+
+            questions.add(questionList.get(rnd.nextInt(questionList.size())).getQuestion());
+
+        }
+
+        return new ArrayList<>(questions);
     }
 
     public String genreWithMaxScore() {
-        throw new UnsupportedOperationException();
+
+        Map<String, List<Question>> questionGroupedByGenre = getQuestionGroupedByGenre();
+
+
+        String candidate = null;
+        int max = Integer.MIN_VALUE;
+        for (String genre : questionGroupedByGenre.keySet()) {
+
+            int sumByGenre = questionGroupedByGenre.get(genre).stream().mapToInt(Question::getScore).sum();
+
+            if (sumByGenre > max) {
+                candidate = genre;
+                max = sumByGenre;
+            }
+
+        }
+
+        return candidate;
+
+
+
     }
 
 

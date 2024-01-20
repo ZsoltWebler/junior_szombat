@@ -33,15 +33,21 @@ public class NamingConventionConverterTest {
     }
 
     @Test
-    public void testToKebabCase() {
-        //TODO
-        fail();
+    public void testToPascalCase() {
+        String expected = "HelloWorld";
+        String actual = NamingConventionConverter.toPascalCase("hello world");
+
+        assertEquals(expected, actual);
     }
 
     @Test
-    public void testToPascalCase() {
-       //TODO
-        fail();
+    public void testToKebabCase() {
+        String expected = "hello-world";
+        String actual = NamingConventionConverter.toKebabCase("hello world");
+
+        assertEquals(expected, actual);
     }
+
+
 
 }

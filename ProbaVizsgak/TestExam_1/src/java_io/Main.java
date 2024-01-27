@@ -1,15 +1,41 @@
 package java_io;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws IOException {
+
+
+
+        List<Flight> flights = getFlights();
+
+        FlightManager flightManager = new FlightManager(flights);
+        System.out.println(flightManager.getMostMode());
+        System.out.println(flightManager.getFlightById("KC9372"));
+        System.out.println(flightManager.getFlightsByCityAndMode("Dublin", Mode.ARRIVAL));
+        System.out.println(flightManager.getEarliestFlight());
+        HashMap<Mode, List<Flight>> flightsByMode = flightManager.getFlightsByMode();
+
+        BufferedWriter writer = new BufferedWriter(new FileWriter("arrival.txt"));
+        BufferedWriter writer_2 = new BufferedWriter(new FileWriter("departure.txt"));
+        for (Flight f : flightsByMode.get(Mode.ARRIVAL)) {
+
+            writer.write(f.getId() + " " + f.getMode() + " " + f.getCity() + " " + f.getTime() +"\n");
+
+        }
+        for (Flight f : flightsByMode.get(Mode.DEPARTURE)) {
+
+            writer_2.write(f.getId() + " " + f.getMode() + " " + f.getCity() + " " + f.getTime() +"\n");
+
+        }
+
+        writer.close();
+        writer_2.close();
 
 
     }

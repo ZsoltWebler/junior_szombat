@@ -18,13 +18,21 @@ public class ImdbController {
 
 
     public void listMovies() {
-        throw new UnsupportedOperationException();
+
+        movieRepository.getAll().stream().forEach(System.out::println);
+
+        System.out.println("========");
+
+        for(MovieDao movie : movieRepository.getAll()){
+            System.out.println(movie);
+        }
 
     }
 
     public void listCategories() {
 
-        throw new UnsupportedOperationException();
+        movieCategoryRepository.getAll().stream().forEach(System.out::println);
+
     }
 
     public void addMovie(MovieDao movieDao) {

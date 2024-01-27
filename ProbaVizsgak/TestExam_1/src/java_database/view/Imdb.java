@@ -42,7 +42,10 @@ public class Imdb extends JFrame {
         JButton movieAddButton = new JButton("Add new movie");
         movieAddButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                throw new UnsupportedOperationException();
+
+                AddNewMovieDialog addNewMovieDialog = new AddNewMovieDialog(controller);
+                addNewMovieDialog.setVisible(true);
+
             }
         });
         contentPane.add(movieAddButton);

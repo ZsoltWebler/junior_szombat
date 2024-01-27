@@ -1,7 +1,6 @@
 package java_io;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class FlightManager {
 
@@ -13,8 +12,8 @@ public class FlightManager {
 
     public Mode getMostMode() {
 
-        long arrivalCount = flights.stream().filter(f -> f.getMode().equals(Mode.DEPARTURE)).count();
-        long departureCount = flights.stream().filter(f -> f.getMode().equals(Mode.ARRIVAL)).count();
+        long arrivalCount = flights.stream().filter(f -> f.getMode().equals(Mode.ARRIVAL)).count();
+        long departureCount = flights.stream().filter(f -> f.getMode().equals(Mode.DEPARTURE)).count();
 
         if (arrivalCount > departureCount) {
             return Mode.ARRIVAL;
@@ -26,19 +25,36 @@ public class FlightManager {
 
     public Optional<Flight> getFlightById(String id) {
 
-        return flights.stream().filter(flight -> flight.getId() == id).findFirst();
+        return flights.stream().filter(flight -> flight.getId().equals(id)).findFirst();
 
     }
 
     public List<Flight> getFlightsByCityAndMode(String city, Mode mode) {
 
-        return flights.stream().filter(flight -> flight.getCity().equals(city) || flight.getMode().equals(mode)).toList();
+        return flights.stream().filter(flight -> flight.getCity().equals(city) && flight.getMode().equals(mode)).toList();
 
     }
 
     public Optional<Flight> getEarliestFlight() {
 
-        throw new UnsupportedOperationException();
+        return flights.stream().min(Comparator.comparing(Flight::getTime));
+
+    }
+
+    public HashMap<Mode, List<Flight>> getFlightsByMode() {
+
+        List<Flight> arrivalFlights = new ArrayList<>();
+        List<Flight> departureFlights = new ArrayList<>();
+
+        flights.forEach(flight -> {
+            if (flight.getMode().equals(Mode.ARRIVAL)) {
+                arrivalFlights.add(flight);
+            } else {
+                departureFlights.add(flight);
+            }
+        });
+
+        return new HashMap<>(Map.of(Mode.ARRIVAL, arrivalFlights, Mode.DEPARTURE, departureFlights));
 
     }
 

@@ -14,7 +14,7 @@ public class BookStore {
 
     public Book getBookByTitle(String title) {
 
-        return bookList.stream().filter(book -> book.getGenre().equals(title)).findFirst().orElse(null);
+        return bookList.stream().filter(book -> book.getTitle().equals(title)).findFirst().orElse(null);
 
     }
 
@@ -23,7 +23,7 @@ public class BookStore {
     }
 
     public List<Book> getAllBookByAuthor(Author author) {
-        return bookList.stream().filter(book -> book.getGenre().equals(author)).toList();
+        return bookList.stream().filter(book -> book.getAuthor().equals(author)).toList();
     }
 
     public Map<Author, List<Book>> getBooksGroupedByAuthor() {
@@ -32,12 +32,12 @@ public class BookStore {
 
     }
 
-    public Map<Genre, List<Book>> getBooksGroupedByGenre(Genre genre) {
-        return null;
+    public Map<Genre, List<Book>> getBooksGroupedByGenre() {
+        return bookList.stream().collect(Collectors.groupingBy(Book::getGenre));
     }
 
     public Book getBookByISBN(String isbn) {
-        return null;
+        return bookList.stream().filter(b -> b.getIsbn().equals(isbn)).findFirst().orElse(null);
     }
 
 

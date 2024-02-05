@@ -10,7 +10,7 @@ public class CarTest {
 
     @Test
     public void testIdentifierMustBeUppercase() {
-        String expectedId = "ID";
+        String expectedId = "ID00000000";
         Car car = new Car("id", "TEST_MAN", "TEST_MODEL", 100.0, true);
 
         assertEquals(expectedId, car.getIdentifier());

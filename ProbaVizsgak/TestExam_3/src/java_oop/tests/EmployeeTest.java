@@ -58,5 +58,25 @@ public class EmployeeTest {
         assertEquals(expected, actual);
     }
 
+    @Test
+    public void testVacationDaysCalculatedCorrectlyIfEmployeeYoungerThan33AndStartedAtFirstMonth() {
+        Employee employee = new Employee("John", "Doe", 1993, 1);
+
+        int actual = employee.getNumberOfVacationDays();
+        int expected = 23;
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testVacationDaysCalculatedCorrectlyIfEmployeeYoungerThan33AndStartedAtSixthMonth() {
+        Employee employee = new Employee("John", "Doe", 1993, 6);
+
+        int actual = employee.getNumberOfVacationDays();
+        int expected = 18;
+
+        assertEquals(expected, actual);
+    }
+
 
 }

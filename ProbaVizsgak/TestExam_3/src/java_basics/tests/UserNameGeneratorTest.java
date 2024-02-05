@@ -32,4 +32,18 @@ public class UserNameGeneratorTest {
         assertTrue(generatedUserName.contains("_"));
     }
 
+    @Test
+    public void testUserNameGenerateV2Before2000() {
+        String generatedUserName = UserNameGenerator.generateUserNameV2("Teszt", "Elek", 1996);
+        String expected = "TEele_996";;
+        assertEquals(expected, generatedUserName);
+    }
+
+    @Test
+    public void testUserNameGenerateV2After2000() {
+        String generatedUserName = UserNameGenerator.generateUserNameV2("Teszt", "Elek", 2001);
+        String expected = "TEele_2001";
+        assertEquals(expected, generatedUserName);
+    }
+
 }

@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class BookStoreTest {
 
@@ -67,12 +67,27 @@ public class BookStoreTest {
 
     @Test
     public void getBooksGroupedByGenreTest() {
-        fail();
+        Map<Genre, List<Book>> booksGroupedByGenre = bookStore.getBooksGroupedByGenre();
+
+        assertEquals(7, booksGroupedByGenre.keySet().size());
+        assertEquals(21, booksGroupedByGenre.values().stream().flatMap(Collection::stream).toList().size());
+
+        booksGroupedByGenre.forEach(((genre, books) -> {
+            for (Book book : books) {
+                assertEquals(genre, book.getGenre());
+            }
+        }));
     }
 
     @Test
     public void getBookByISBNTest() {
-        fail();
+        assertEquals(new Book("Brothers to the Death", "978-1-2581-0238-8", new Author("Darren", "Shan"), Genre.HORROR),
+                bookStore.getBookByISBN("978-1-2581-0238-8"));
+    }
+
+    @Test
+    public void getBookByISBNTestISBNNotPresent() {
+        assertNull(bookStore.getBookByISBN("1234"));
     }
 
 

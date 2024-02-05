@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.Comparator;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -48,11 +49,12 @@ public class EmissionReaderTest {
 
     @Test
     public void carEmissionReadTest_5() {
-        fail();
+        assertEquals(522, carEmissionInfos.stream().max(Comparator.comparing(CarEmissionInfo::getCo2Emission)).get().getCo2Emission());
+        assertEquals(96, carEmissionInfos.stream().min(Comparator.comparing(CarEmissionInfo::getCo2Emission)).get().getCo2Emission());
     }
 
     @Test
     public void carEmissionReadTest_6() {
-        fail();
+        assertEquals(51, carEmissionInfos.stream().map(CarEmissionInfo::getEngineSize).distinct().toList().size());
     }
 }

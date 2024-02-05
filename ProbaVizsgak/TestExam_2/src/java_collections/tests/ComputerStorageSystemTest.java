@@ -1,11 +1,14 @@
 package java_collections.tests;
 
-import org.junit.jupiter.api.Test;
 import java_collections.Computer;
 import java_collections.ComputerDatabase;
 import java_collections.ComputerStorageSystem;
+import java_collections.StorageType;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -72,6 +75,26 @@ public class ComputerStorageSystemTest {
         for (Computer c : actual) {
             assertTrue(c.getRamCapacity() > 16);
         }
+    }
+
+    @Test
+    public void testGetAllComputersGroupedByStorageType() {
+
+        Map<StorageType, List<Computer>> actual = computerStorageSystem.getAllComputersGroupedByStorageType();
+
+        assertEquals(Set.of(StorageType.SSD, StorageType.HDD), actual.keySet());
+
+        assertEquals(56,actual.get(StorageType.HDD).size());
+        assertEquals(44,actual.get(StorageType.SSD).size());
+
+
+        for (StorageType storageType : actual.keySet()) {
+            for (Computer computer : actual.get(storageType)) {
+
+                assertEquals(storageType, computer.getStorageType());
+            }
+        }
+
     }
 
 }

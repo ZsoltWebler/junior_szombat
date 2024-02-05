@@ -1,6 +1,7 @@
 package java_database.view;
 
 import java_database.model.RoomDao;
+import java_database.repository.RoomCategoryRepository;
 import java_database.repository.RoomRepository;
 
 import javax.swing.*;
@@ -16,10 +17,12 @@ public class Hotel extends JFrame {
     private JPanel contentPane;
     private JTable table;
     private RoomRepository repository;
+    private RoomCategoryRepository roomCategoryRepository;
 
 
-    public Hotel(RoomRepository repository) {
+    public Hotel(RoomRepository repository, RoomCategoryRepository roomCategoryRepository) {
         this.repository = repository;
+        this.roomCategoryRepository = roomCategoryRepository;
         init();
         refreshTable();
     }
@@ -104,12 +107,14 @@ public class Hotel extends JFrame {
 
     private void openAddRoomDialog() {
 
-        //TODO
+        AddRoomDialog addRoomDialog = new AddRoomDialog(this, roomCategoryRepository.getAll());
+        addRoomDialog.setVisible(true);
     }
 
     public void addRoom(RoomDao roomDao) {
 
-        //TODO
+        repository.save(roomDao);
+        refreshTable();
 
     }
 

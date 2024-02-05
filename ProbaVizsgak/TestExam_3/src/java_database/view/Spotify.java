@@ -104,11 +104,14 @@ public class Spotify extends JFrame {
 
     private void openAddSongDialog() {
 
-        throw new UnsupportedOperationException();
+        new AddSongDialog(this).showDialog();
     }
 
     public void addSong(SongDao song) {
-        throw new UnsupportedOperationException();
+        if (song != null) {
+            repository.save(song);
+            refreshTable();
+        }
     }
 
     void refreshTable() {
@@ -119,7 +122,7 @@ public class Spotify extends JFrame {
 
         for (int i = 0; i < songDaos.size(); i++) {
             SongDao songDao = songDaos.get(i);
-            rows[i] = new Object[]{songDao.getSongId(), songDao.getTitle(), songDao.getTitle(), songDao.getGenre(), songDao.getReleaseYear()};
+            rows[i] = new Object[]{songDao.getSongId(), songDao.getTitle(), songDao.getArtist(), songDao.getGenre(), songDao.getReleaseYear()};
         }
 
 

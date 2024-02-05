@@ -47,7 +47,7 @@ public class PeopleReaderTest {
 
     @Test
     public void peopleReadTest_5() {
-        //TODO
-        fail();
+        assertEquals(peopleList.stream().filter(people -> people.getGender().equals(Gender.MALE)).toList().size(), 545);
+        assertEquals(peopleList.stream().filter(people -> people.getGender().equals(Gender.FEMALE)).toList().size(), 455);
     }
 }

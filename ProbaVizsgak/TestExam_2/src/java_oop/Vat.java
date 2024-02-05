@@ -6,7 +6,9 @@ public enum Vat {
     ESTONIA(20),
     GREECE(24),
     HUNGARY(27),
-    LUXEMBOURG(17);
+    LUXEMBOURG(17),
+    MALTA(18),
+    ROMANIA(19);
 
     public final int VAT_RATE;
 

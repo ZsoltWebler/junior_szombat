@@ -1,7 +1,7 @@
 package java_database.view;
 
-import java_database.model.ApartmentDao;
-import java_database.repository.ApartmentRepository;
+import java_database.model.RoomDao;
+import java_database.repository.RoomRepository;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -11,14 +11,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
-public class Airbnb extends JFrame {
+public class Hotel extends JFrame {
 
     private JPanel contentPane;
     private JTable table;
-    private ApartmentRepository repository;
+    private RoomRepository repository;
 
 
-    public Airbnb(ApartmentRepository repository) {
+    public Hotel(RoomRepository repository) {
         this.repository = repository;
         init();
         refreshTable();
@@ -54,14 +54,14 @@ public class Airbnb extends JFrame {
         scrollPane.setViewportView(table);
         table.setModel(new DefaultTableModel(
                 new Object[][]{
-                        {null, null, null, null, null, null},
+                        {null, null, null, null, null, null, null},
                 },
                 new String[]{
-                        "Id", "City", "Address", "Area", "Price", "Reserved"
+                        "Id", "Level", "Area", "Price", "Reserved", "On Sale", "Category"
                 }
         ) {
             Class[] columnTypes = new Class[]{
-                    Integer.class, String.class, String.class, Double.class, Integer.class, Boolean.class
+                    Integer.class, Integer.class, Double.class, Integer.class, Boolean.class, Boolean.class, Integer.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -85,50 +85,54 @@ public class Airbnb extends JFrame {
         gbc_panel_1.gridy = 1;
         contentPane.add(panel_1, gbc_panel_1);
 
-        JButton refreshApartmentButton = new JButton("Refresh");
-        refreshApartmentButton.addActionListener(new ActionListener() {
+        JButton refreshRoomButton = new JButton("Refresh");
+        refreshRoomButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 refreshTable();
             }
         });
-        panel_1.add(refreshApartmentButton);
+        panel_1.add(refreshRoomButton);
 
-        JButton addApartmentButton = new JButton("Add apartment");
-        addApartmentButton.addActionListener(new ActionListener() {
+        JButton addRoomButton = new JButton("Add Room");
+        addRoomButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                openAddApartmentDialog();
+                openAddRoomDialog();
             }
         });
-        panel_1.add(addApartmentButton);
+        panel_1.add(addRoomButton);
     }
 
-    private void openAddApartmentDialog() {
+    private void openAddRoomDialog() {
+
         //TODO
     }
 
-    public void addApartment(ApartmentDao apartmentDao) {
+    public void addRoom(RoomDao roomDao) {
+
         //TODO
+
     }
 
-    void refreshTable() {
+     void refreshTable() {
 
-        List<ApartmentDao> apartments = repository.getAll();
+        List<RoomDao> roomDaos = repository.getAll();
 
-        Object[][] rows = new Object[apartments.size()][7];
+        Object[][] rows = new Object[roomDaos.size()][7];
 
-        for (int i = 0; i < apartments.size(); i++) {
-            ApartmentDao apartment = apartments.get(i);
-            rows[i] = new Object[]{apartment.getApartmentId(), apartment.getCity(), apartment.getAddress(), apartment.getArea(), apartment.getPrice(), apartment.isReserved()};
+        for (int i = 0; i < roomDaos.size(); i++) {
+            RoomDao roomDao = roomDaos.get(i);
+            rows[i] = new Object[]{roomDao.getRoomId(), roomDao.getLevel(),roomDao.getArea(), roomDao.getPrice(), roomDao.isReserved(), roomDao.isOnSale(), roomDao.getRoomCategoryId()};
         }
+
 
         table.setModel(new DefaultTableModel(
                 rows,
                 new String[]{
-                        "Id", "City", "Address", "Area", "Price", "Reserved"
+                        "Id", "Level", "Area", "Price", "Reserved", "On Sale", "Category"
                 }
         ) {
             Class[] columnTypes = new Class[]{
-                    Integer.class, String.class, String.class, Double.class, Integer.class, Boolean.class
+                    Integer.class, Integer.class, Double.class, Integer.class, Boolean.class, Boolean.class, Integer.class
             };
 
             public Class getColumnClass(int columnIndex) {

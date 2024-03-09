@@ -28,17 +28,17 @@ public class GameShop {
                 .getKey();
     }
 
-    public Map<Genre, List<Game>> gamesByGenre() {
+    public Map<Developer, List<Game>> gamesByDeveloper() {
         //Todo
         throw new UnsupportedOperationException();
     }
 
-    public double averagePriceOfGames() {
+    public double medianPriceOfGames() {
         //Todo
         throw new UnsupportedOperationException();
     }
 
-    public Game mostReviewedGame() {
+    public Game minPriceGame() {
         //Todo
         throw new UnsupportedOperationException();
     }
